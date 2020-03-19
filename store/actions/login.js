@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
  
   export const transformd_entered_data = (username,password) => {
 
+    // this is a book
+
+
+
     const key='51c693bac3375f66de95dcd3f264d1a8';
 
     return async dispatch=>{
@@ -86,4 +90,41 @@ import { useDispatch, useSelector } from 'react-redux';
     throw error
 }
     }
+}
+
+export const give_movie_data=()=>{
+  const key='51c693bac3375f66de95dcd3f264d1a8';
+  const page='1';
+  const language='en-US';
+
+  
+
+  return async Dispatch=>{
+
+    try{
+   const response=await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=${language}&page=${page}`);
+   const resData=await response.json();
+   
+   if(!response.ok) {
+    throw new Error('Some thing is going wrong.')
+}
+
+  // console.log(resData.results.length);
+
+
+    
+  Dispatch({
+    type:'recive_movie_data',
+    data:resData.results
+  })
+
+    
+
+
+
+  
+      }catch (error){
+      throw error;
+    }
+  }
 }
