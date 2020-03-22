@@ -20,7 +20,7 @@ const PrimeScreen=props=>{
 
     // },[])
     
-//
+//hhijoko
     const Recived_Data=useCallback(async()=>{
 
         try{
