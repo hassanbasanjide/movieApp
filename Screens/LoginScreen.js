@@ -56,7 +56,7 @@ const Login=props=>{
                     containerStyle={styles.input} 
                     value={username}  
                     onChangeText={userNameChangeHandler} 
-                    placeholder=" UserName"
+                    placeholder=" Username"
                     inputStyle={styles.inputText}
                     leftIcon={
                         <Ionicons name='ios-person' color="white" size={24} />
