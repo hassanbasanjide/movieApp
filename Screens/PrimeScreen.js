@@ -10,6 +10,7 @@ import  RenderMovie from '../components/RenderMovie';
 
 const PrimeScreen=props=>{
     const Dispatch=useDispatch();
+    useSelector(state => console.log(state.store1));
 
     // useFocusEffect(()=>{
     //      const onBackPress=()=>{return false}
