@@ -17,8 +17,8 @@ const store2 = (state = initialState, action) => {
         }; 
       }
       if(action.CategoryType === "top_rated"){
-          console.log('kiiir')
-        return {...state,top_rateds:action.data
+       
+        return {...state,top_rated:action.data
         }; 
       }
   }

@@ -34,6 +34,7 @@ const renderCategory = props => {
 
 
 
+
   return (
     <View style={styles.container}>
       <FlatList
