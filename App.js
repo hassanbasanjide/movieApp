@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AppScreen from './Navigation/NavigationBsae';
+import AppScreen from './Navigation/NavigationBase';
 import { combineReducers,createStore,applyMiddleware } from 'redux';
 import { Provider, useSelector } from 'react-redux';
 import store1 from './store/reducers/login';

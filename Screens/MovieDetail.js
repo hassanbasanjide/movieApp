@@ -40,11 +40,11 @@ const DetailComponents =props=>{
                 <Text style={{color:'white',fontSize:22}}>{title}</Text>
                 </View>
                 <View style={styles.rate}>
-                <Text style={{color:'gold',fontSize:29}}>{rate}</Text>
-                <View style={{marginLeft:15}}>
+                <Text style={{color:'gold',fontSize:29,marginRight:10}}>{rate}</Text>
+             
                 
                 <Star popularity={rate} size={25}/>
-                </View>
+            
                 </View>
 
 
@@ -93,7 +93,8 @@ const styles=StyleSheet.create({
         width:'98%',
        // borderWidth:1,
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:15
     },
     description:{
         marginTop:35,

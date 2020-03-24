@@ -37,7 +37,7 @@ const Login = props => {
     try {
       await Dispatch(requestTokenAndLogin(usename, pass));
 
-      props.navigation.navigate("primeScreen");
+      props.navigation.navigate("total");
     } catch (error) {
       console.log(error);
 
