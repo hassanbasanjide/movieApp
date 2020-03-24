@@ -50,7 +50,7 @@ const Login = props => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
-        style={{ flex: 1 }}
+        style={{ flex: 1,backgroundColor:'hsl(290, 20%, 20%)' }}
         behavior="padding"
         keyboardVerticalOffset={10}
       >

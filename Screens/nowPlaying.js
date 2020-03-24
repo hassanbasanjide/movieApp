@@ -21,6 +21,9 @@ const nawPlayingScreen = props => {
 
   return (
     <RenderCategory category={"now_playing"} navigateToDetail={navigateToDetail} />
+  
+
+   
   );
 };
 

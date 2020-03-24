@@ -1,14 +1,21 @@
-import { API_KEY } from '../../utils/constants';
+import { API_KEY } from "../../utils/constants";
 
-export const getMovieData = (category) => {
+export const getMovieData = category => {
   const page = "1";
   const language = "en-US";
 
   return async Dispatch => {
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=${language}&page=${page}`
-      );
+      let response;
+      if (category === "latest") {
+        response = await fetch(
+          `https://api.themoviedb.org/3/movie/latest?api_key=${API_KEY}&language=${language}`
+        );
+      } else {
+        response = await fetch(
+          `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=${language}&page=${page}`
+        );
+      }
       const resData = await response.json();
 
       if (!response.ok) {
@@ -17,7 +24,9 @@ export const getMovieData = (category) => {
 
       Dispatch({
         type: "recive_movie_data",
-        data: resData.results
+        data: resData.results,
+        CategoryType:category
+        
       });
     } catch (error) {
       throw error;

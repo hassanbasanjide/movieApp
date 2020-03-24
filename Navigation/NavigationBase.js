@@ -14,7 +14,6 @@ import nowPlaying from "../Screens/nowPlaying";
 import DetailComponents from "../Screens/MovieDetail";
 import { version } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import latest from "../Screens/latest";
 import popular from "../Screens/popular";
 import topRatad from "../Screens/topRatad";
 
@@ -75,16 +74,16 @@ const tabSection = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-       
+        activeTintColor: "orange",
+        inactiveTintColor: "white",
+        tabStyle: {
+          backgroundColor: "hsl(290, 20%, 20%)"
+        }
       }}
-      
     >
       <Tab.Screen name="nowPlaying" component={NowPlaying} />
-      <Tab.Screen name="latest" component={Latest} />
-      <Tab.Screen name="popular" component={Popular} />
-      <Tab.Screen name="topRatad" component={TopRatad} />
+       <Tab.Screen name="popular" component={Popular} /> 
+      <Tab.Screen name="topRatad" component={TopRatad} /> 
     </Tab.Navigator>
   );
 };

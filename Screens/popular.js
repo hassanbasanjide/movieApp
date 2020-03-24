@@ -11,7 +11,7 @@ import RenderCategory from "../components/RenderCategory";
 
 const popularScreen = props => {
   const navigateToDetail = (title, imageUrl, description, vote_average) => {
-    props.navigation.navigate("MovieDetail", {
+    props.navigation.navigate("DetailComponents", {
       title: title,
       imageUrl: imageUrl,
       description: description,
@@ -20,7 +20,8 @@ const popularScreen = props => {
   };
 
   return (
-    <RenderCategory category={"popular"} navigateToDetail={navigateToDetail} />
+   <RenderCategory category={"popular"} navigateToDetail={navigateToDetail} />
+    
   );
 };
 
