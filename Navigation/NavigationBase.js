@@ -99,9 +99,9 @@ const tabSection = () => {
       }}
     >
        <Tab.Screen name="nowPlaying" component={NowPlaying} />
-       <Tab.Screen name="popular" component={Popular} /> 
+       {/* <Tab.Screen name="popular" component={Popular} /> 
       <Tab.Screen name="topRatad" component={TopRatad} />  
-      <Tab.Screen name="latest" component={LatestScreen} /> 
+      <Tab.Screen name="latest" component={LatestScreen} />  */}
     </Tab.Navigator>
   );
 };
@@ -114,7 +114,7 @@ const totalApp = () => {
           headerShown: false
         }}
       >
-        <Stack.Screen name="Login" component={Login} />
+      {/* <Stack.Screen name="Login" component={Login} /> */}
         <Stack.Screen name="total" component={tabSection} />
       </Stack.Navigator>
     </NavigationContainer>
