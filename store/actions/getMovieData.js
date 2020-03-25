@@ -7,25 +7,33 @@ export const getMovieData = category => {
   return async Dispatch => {
     try {
       let response;
+      let Result;
       if (category === "latest") {
         response = await fetch(
           `https://api.themoviedb.org/3/movie/latest?api_key=${API_KEY}&language=${language}`
         );
+        const resData = await response.json();
+        Result=[resData];
+       
       } else {
         response = await fetch(
           `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=${language}&page=${page}`
         );
+        const resData = await response.json();
+        Result=resData.results;
       }
-      const resData = await response.json();
+     
+      
 
       if (!response.ok) {
         throw new Error("Some thing is going wrong.");
       }
 
+
       Dispatch({
         type: "recive_movie_data",
-        data: resData.results,
-        CategoryType:category
+        data:Result ,
+        CategoryType:category,
         
       });
     } catch (error) {

@@ -16,6 +16,7 @@ import { version } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import popular from "../Screens/popular";
 import topRatad from "../Screens/topRatad";
+import latestScreen from '../Screens/latest';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -69,6 +70,18 @@ const TopRatad = props => {
     </Stack.Navigator>
   );
 };
+const LatestScreen = props => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name="latest" component={latestScreen} />
+      <Stack.Screen name="DetailComponents" component={DetailComponents} />
+    </Stack.Navigator>
+  );
+};
 
 const tabSection = () => {
   return (
@@ -81,9 +94,10 @@ const tabSection = () => {
         }
       }}
     >
-      <Tab.Screen name="nowPlaying" component={NowPlaying} />
+       <Tab.Screen name="nowPlaying" component={NowPlaying} />
        <Tab.Screen name="popular" component={Popular} /> 
-      <Tab.Screen name="topRatad" component={TopRatad} /> 
+      <Tab.Screen name="topRatad" component={TopRatad} />  
+      <Tab.Screen name="latest" component={LatestScreen} /> 
     </Tab.Navigator>
   );
 };

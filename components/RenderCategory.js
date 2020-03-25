@@ -35,9 +35,10 @@ const renderCategory = props => {
 
 
 
+
   return (
     <View style={styles.container}>
-      <FlatList
+       <FlatList
         data={movieData}
         renderItem={itemData => {
           return (
@@ -55,7 +56,7 @@ const renderCategory = props => {
             />
           );
         }}
-      />
+      /> 
     </View>
   );
 };

@@ -1,7 +1,8 @@
 initialState = {
   now_playing: null,
   popular: null,
-  top_rated:null
+  top_rated:null,
+  latest:null
 
 };
 
@@ -19,6 +20,11 @@ const store2 = (state = initialState, action) => {
       if(action.CategoryType === "top_rated"){
        
         return {...state,top_rated:action.data
+        }; 
+      }
+      if(action.CategoryType === "latest"){
+      
+        return {...state,latest:action.data
         }; 
       }
   }
