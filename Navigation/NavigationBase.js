@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
-import Login from "../Screens/Loginscreen";
+import Login from "../Screens/LoginScreen";
 import nowPlaying from "../Screens/nowPlaying";
 import DetailComponents from "../Screens/MovieDetail";
 import { version } from "react";
@@ -88,9 +88,13 @@ const tabSection = () => {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: "orange",
-        inactiveTintColor: "white",
+        inactiveTintColor: "gray",
         tabStyle: {
-          backgroundColor: "hsl(290, 20%, 20%)"
+          backgroundColor: "hsl(290, 20%, 20%)",
+          paddingTop: 35
+        },
+        labelStyle: {
+          fontSize: 11
         }
       }}
     >
