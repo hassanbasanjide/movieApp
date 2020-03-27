@@ -1,6 +1,5 @@
 import React,{ useEffect ,useCallback} from 'react';
 import { Text,View,StyleSheet, ImageBackground, Dimensions,FlatList} from 'react-native';
-import {Ionicons} from '@expo/vector-icons' 
 import Star from '../components/Star';
 
 

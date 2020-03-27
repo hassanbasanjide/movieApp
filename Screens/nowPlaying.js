@@ -10,7 +10,7 @@ import {
 import RenderCategory from "../components/RenderCategory";
 import { primeFunc } from "./../store/actions/newLogin";
 
-const nawPlayingScreen = props => {
+const MovieNowPlayingScreen = props => {
 //   const navigateToDetail = (title, imageUrl, description, vote_average) => {
 //     props.navigation.navigate("DetailComponents", {
 //       title: title,
@@ -21,7 +21,7 @@ const nawPlayingScreen = props => {
 //   };
 
   return (
-    //<RenderCategory category={"now_playing"} navigateToDetail={navigateToDetail} />
+    //<RenderCategory category={"now_playing"} navigateToDetail={navigateToDetail} tvOrMovie='movie' />
 <View>
 <Button title="login" onPress={() => {primeFunc()}}/>
 </View>
@@ -32,4 +32,4 @@ const nawPlayingScreen = props => {
   );
 };
 
-export default nawPlayingScreen;
+export default MovieNowPlayingScreen;

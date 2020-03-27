@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import RenderCategory from "../components/RenderCategory";
 
-const latestScreen = props => {
+const MovieLatestScreen = props => {
   const navigateToDetail = (title, imageUrl, description, vote_average) => {
     props.navigation.navigate("DetailComponents", {
       title: title,
@@ -22,7 +22,7 @@ const latestScreen = props => {
   };
 
   return (
-   <RenderCategory category={"latest"} navigateToDetail={navigateToDetail} />
+   <RenderCategory category={"latest"} navigateToDetail={navigateToDetail} tvOrMovie='movie' />
 
    
   
@@ -31,4 +31,4 @@ const latestScreen = props => {
   );
 };
 
-export default latestScreen;
+export default MovieLatestScreen;

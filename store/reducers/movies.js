@@ -6,7 +6,7 @@ initialState = {
 
 };
 
-const store2 = (state = initialState, action) => {
+const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case "recive_movie_data":
       if (action.CategoryType === "now_playing") {
@@ -32,4 +32,4 @@ const store2 = (state = initialState, action) => {
   return state;
 };
 
-export default store2;
+export default movieReducer;

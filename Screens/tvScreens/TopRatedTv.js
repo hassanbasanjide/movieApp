@@ -1,7 +1,7 @@
 import React from "react";
-import RenderCategory from "../components/RenderCategory";
+import RenderCategory from "../../components/RenderCategory";
 
-const MoviePopularScreen = props => {
+const TvTopRatedScreen = props => {
   const navigateToDetail = (title, imageUrl, description, vote_average) => {
     props.navigation.navigate("DetailComponents", {
       title: title,
@@ -12,9 +12,9 @@ const MoviePopularScreen = props => {
   };
 
   return (
-   <RenderCategory category={"popular"} navigateToDetail={navigateToDetail} tvOrMovie='movie' />
+   <RenderCategory category={"top_rated"} navigateToDetail={navigateToDetail} tvOrMovie='tv' />
     
   );
 };
 
-export default MoviePopularScreen;
+export default TvTopRatedScreen;

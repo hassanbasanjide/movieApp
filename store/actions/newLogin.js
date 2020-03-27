@@ -1,3 +1,5 @@
+import { Linking } from "react-native";
+
 import { ACCESS_TOKEN } from "../../utils/constants";
 export const primeFunc = () => {
     console.log('start')
@@ -22,6 +24,7 @@ export const primeFunc = () => {
 
             
             const resData=await response.json();
+            Linking.openURL(`https;//www.themoviedb.org/auth/access?request_token=${resData.request_token}`)
 
             console.log(resData);
 

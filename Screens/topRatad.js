@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import RenderCategory from "../components/RenderCategory";
 
-const topRatedScreen = props => {
+const MovieTopRatedScreen = props => {
   const navigateToDetail = (title, imageUrl, description, vote_average) => {
     props.navigation.navigate("DetailComponents", {
       title: title,
@@ -20,8 +20,8 @@ const topRatedScreen = props => {
   };
 
   return (
-    <RenderCategory category={"top_rated"} navigateToDetail={navigateToDetail} />
+    <RenderCategory category={"top_rated"} navigateToDetail={navigateToDetail} tvOrMovie='movie' />
   );
 };
 
-export default topRatedScreen;
+export default MovieTopRatedScreen;
