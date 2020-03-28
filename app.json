@@ -3,6 +3,7 @@
     "name": "movie app",
     "slug": "MovieApp",
     "privacy": "public",
+    "scheme": "moviedb",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
