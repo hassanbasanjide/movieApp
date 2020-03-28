@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Platform
 } from "react-native";
+
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 import DetailComponents from "../Screens/MovieDetail";
@@ -23,108 +24,6 @@ import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-const MovieNowPlayingStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="nowPlaying" component={NowPlayingMovie} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
-const MovieLatestStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="latest" component={LatestMovie} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-const MoviePopularStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="popular" component={PopularMovie} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-const MovieTopRatedStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="topRatad" component={TopRatedMovie} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
-const TvOnTheAirStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="Now playing" component={NowOnAirTv} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
-const TvPopularStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="popular" component={PopularTv} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
-const TvTopRatedStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="Top Rated" component={TopRatedTv} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
-const TvLatestStack = props => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="Latest" component={LatestTv} />
-      <Stack.Screen name="DetailComponents" component={DetailComponents} />
-    </Stack.Navigator>
-  );
-};
-
 const MovieTab = () => {
   return (
     <Tab.Navigator
@@ -132,7 +31,7 @@ const MovieTab = () => {
         activeTintColor: "orange",
         inactiveTintColor: "gray",
         tabStyle: {
-          backgroundColor: "hsl(290, 20%, 20%)",
+          backgroundColor: "hsl(290, 20%, 15%)",
           paddingTop: 35
         },
         labelStyle: {
@@ -140,10 +39,10 @@ const MovieTab = () => {
         }
       }}
     >
-      <Tab.Screen name="nowPlaying" component={MovieNowPlayingStack} />
-      <Tab.Screen name="popular" component={MoviePopularStack} />
-      <Tab.Screen name="topRatad" component={MovieTopRatedStack} />
-      <Tab.Screen name="latest" component={MovieLatestStack} />
+      <Tab.Screen name="nowPlaying" component={NowPlayingMovie} />
+      <Tab.Screen name="popular" component={PopularMovie} />
+      <Tab.Screen name="topRatad" component={TopRatedMovie} />
+      <Tab.Screen name="latest" component={LatestMovie} />
     </Tab.Navigator>
   );
 };
@@ -155,7 +54,7 @@ const tvTab = () => {
         activeTintColor: "orange",
         inactiveTintColor: "gray",
         tabStyle: {
-          backgroundColor: "hsl(290, 20%, 20%)",
+          backgroundColor: "hsl(290, 20%, 15%)",
           paddingTop: 35
         },
         labelStyle: {
@@ -163,30 +62,43 @@ const tvTab = () => {
         }
       }}
     >
-      <Tab.Screen name="nowPlaying" component={TvOnTheAirStack} />
-      <Tab.Screen name="popular" component={TvPopularStack} />
+      <Tab.Screen name="nowPlaying" component={NowOnAirTv} />
+      <Tab.Screen name="popular" component={PopularTv} />
       <Tab.Screen name="topRatad" component={TopRatedTv} />
-      <Tab.Screen name="latest" component={TvLatestStack} />
+      <Tab.Screen name="latest" component={LatestTv} />
     </Tab.Navigator>
   );
 };
 
-const totalApp = () => {
+const Categories = () => {
+  return (
+    <Tab.Navigator
+      tabBarPosition="bottom"
+      tabBarOptions={{
+        activeTintColor: "orange",
+        inactiveTintColor: "gray",
+        tabStyle: {
+          backgroundColor: "hsl(290, 20%, 15%)"
+        }
+      }}
+    >
+      <Tab.Screen name="Movie" component={MovieTab} />
+      <Tab.Screen name="TV" component={tvTab} />
+    </Tab.Navigator>
+  );
+};
+
+const totalApp = props => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        tabBarPosition='bottom'
-        tabBarOptions={{
-          activeTintColor: "orange",
-          inactiveTintColor: "gray",
-          tabStyle: {
-            backgroundColor: "hsl(290, 20%, 15%)",
-          }
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false
         }}
       >
-        <Tab.Screen name="Movie" component={MovieTab} />
-        <Tab.Screen name="TV" component={tvTab} />
-      </Tab.Navigator>
+        <Stack.Screen name="categories" component={Categories} />
+        <Stack.Screen name="DetailComponents" component={DetailComponents} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
