@@ -1,121 +1,105 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Platform
-} from "react-native";
-
-import { NavigationContainer, DrawerActions } from "@react-navigation/native";
-import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
-import DetailComponents from "../Screens/MovieDetail";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import PopularMovie from "../Screens/popular";
-import NowPlayingMovie from "../Screens/nowPlaying";
-import TopRatedMovie from "../Screens/topRatad";
-import LatestMovie from "../Screens/latest";
-import LatestTv from "../Screens/tvScreens/LatestTv";
-import NowOnAirTv from "../Screens/tvScreens/NowOnAirTv";
-import PopularTv from "../Screens/tvScreens/PopularTv";
-import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import LatestMovie from '../Screens/latest';
 import LoginScreen from '../Screens/LoginScreen';
+import DetailComponents from '../Screens/MovieDetail';
+import NowPlayingMovie from '../Screens/nowPlaying';
+import PopularMovie from '../Screens/popular';
+import TopRatedMovie from '../Screens/topRatad';
+import LatestTv from '../Screens/tvScreens/LatestTv';
+import NowOnAirTv from '../Screens/tvScreens/NowOnAirTv';
+import PopularTv from '../Screens/tvScreens/PopularTv';
+import TopRatedTv from '../Screens/tvScreens/TopRatedTv';
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-const MovieTab = () => {
-  return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "orange",
-        inactiveTintColor: "gray",
-        tabStyle: {
-          backgroundColor: "hsl(290, 20%, 15%)",
-          paddingTop: 35
-        },
-        labelStyle: {
-          fontSize: 11
-        }
+const MovieTab = () => (
+  <Tab.Navigator
+    tabBarOptions={{
+      activeTintColor: 'orange',
+      inactiveTintColor: 'gray',
+      tabStyle: {
+        backgroundColor: 'hsl(290, 20%, 15%)',
+        paddingTop: 35
+      },
+      labelStyle: {
+        fontSize: 11
+      }
+    }}
+  >
+    <Tab.Screen name="nowPlaying" component={NowPlayingMovie} />
+    <Tab.Screen name="popular" component={PopularMovie} />
+    <Tab.Screen name="topRatad" component={TopRatedMovie} />
+    <Tab.Screen name="latest" component={LatestMovie} />
+  </Tab.Navigator>
+);
+
+const tvTab = () => (
+  <Tab.Navigator
+    tabBarOptions={{
+      activeTintColor: 'orange',
+      inactiveTintColor: 'gray',
+      tabStyle: {
+        backgroundColor: 'hsl(290, 20%, 15%)',
+        paddingTop: 35
+      },
+      labelStyle: {
+        fontSize: 11
+      }
+    }}
+  >
+    <Tab.Screen name="nowPlaying" component={NowOnAirTv} />
+    <Tab.Screen name="popular" component={PopularTv} />
+    <Tab.Screen name="topRatad" component={TopRatedTv} />
+    <Tab.Screen name="latest" component={LatestTv} />
+  </Tab.Navigator>
+);
+
+const Categories = () => (
+  <Tab.Navigator
+    tabBarPosition="bottom"
+    tabBarOptions={{
+      activeTintColor: 'orange',
+      inactiveTintColor: 'gray',
+      tabStyle: {
+        backgroundColor: 'hsl(290, 20%, 15%)'
+      }
+    }}
+  >
+    <Tab.Screen name="Movie" component={MovieTab} />
+    <Tab.Screen name="TV" component={tvTab} />
+  </Tab.Navigator>
+);
+
+const totalApp = () => (
+  <NavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
       }}
     >
-      <Tab.Screen name="nowPlaying" component={NowPlayingMovie} />
-      <Tab.Screen name="popular" component={PopularMovie} />
-      <Tab.Screen name="topRatad" component={TopRatedMovie} />
-      <Tab.Screen name="latest" component={LatestMovie} />
-    </Tab.Navigator>
-  );
-};
+      <Stack.Screen name="loginScreen" component={LoginScreen} />
+      <Stack.Screen name="categories" component={Categories} />
+      <Stack.Screen name="DetailComponents" component={DetailComponents} />
 
-const tvTab = () => {
-  return (
-    <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "orange",
-        inactiveTintColor: "gray",
-        tabStyle: {
-          backgroundColor: "hsl(290, 20%, 15%)",
-          paddingTop: 35
-        },
-        labelStyle: {
-          fontSize: 11
-        }
-      }}
-    >
-      <Tab.Screen name="nowPlaying" component={NowOnAirTv} />
-      <Tab.Screen name="popular" component={PopularTv} />
-      <Tab.Screen name="topRatad" component={TopRatedTv} />
-      <Tab.Screen name="latest" component={LatestTv} />
-    </Tab.Navigator>
-  );
-};
 
-const Categories = () => {
-  return (
-    <Tab.Navigator
-      tabBarPosition="bottom"
-      tabBarOptions={{
-        activeTintColor: "orange",
-        inactiveTintColor: "gray",
-        tabStyle: {
-          backgroundColor: "hsl(290, 20%, 15%)"
-        }
-      }}
-    >
-      <Tab.Screen name="Movie" component={MovieTab} />
-      <Tab.Screen name="TV" component={tvTab} />
-    </Tab.Navigator>
-  );
-};
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 
-const totalApp = props => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false
-        }}
-      >
-          <Stack.Screen name="loginScreen" component={LoginScreen} />
-        <Stack.Screen name="categories" component={Categories} />
-        <Stack.Screen name="DetailComponents" component={DetailComponents} />
-      
-        
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
-
-const styles = StyleSheet.create({
-  bar: {
-    flexDirection: "row",
-    marginLeft: 10,
-    justifyContent: "space-between"
-  },
-  eachContainer: {
-    marginHorizontal: 16
-  }
-});
+// const styles = StyleSheet.create({
+//   bar: {
+//     flexDirection: "row",
+//     marginLeft: 10,
+//     justifyContent: "space-between"
+//   },
+//   eachContainer: {
+//     marginHorizontal: 16
+//   }
+// });
 
 export default totalApp;

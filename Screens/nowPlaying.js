@@ -1,48 +1,29 @@
-import React, { useEffect, useState } from "react";
-
-import {
-  Text,
-  View,
-  StyleSheet,
-  BackHandler,
-  Alert,
-  Button,
-  Linking
-} from "react-native";
-import RenderCategory from "../components/RenderCategory";
-import { primeFunc } from "./../store/actions/newLogin";
+/* eslint-disable linebreak-style */
 import * as SecureStore from 'expo-secure-store';
+import React, { useEffect } from 'react';
+import RenderCategory from '../components/RenderCategory';
 
+const MovieNowPlayingScreen = (props) => {
+  const navigateToDetail = (title, imageUrl, description, voteAverage) => {
+    props.navigation.navigate('DetailComponents', {
+      title,
+      imageUrl,
+      description,
+      vote_average: voteAverage
+    });
+  };
 
-const MovieNowPlayingScreen = props => {
-
-
-    const navigateToDetail = (title, imageUrl, description, vote_average) => {
-      props.navigation.navigate("DetailComponents", {
-        title: title,
-        imageUrl: imageUrl,
-        description: description,
-        vote_average: vote_average
-      });
-    };
-
-    const getAccuntId=async()=>{
-    const test= await  SecureStore.getItemAsync('account_id')
-    console.log(test)
-   
-     }
-    useEffect(()=>{
-     getAccuntId()
-    },[getAccuntId])
-   
+  const getAccountId = async () => {
+    const test = await SecureStore.getItemAsync('account_id');
+    console.log(test);
+  };
+  useEffect(() => {
+    getAccountId();
+  }, [getAccountId]);
 
 
   return (
-    <RenderCategory category={"now_playing"} navigateToDetail={navigateToDetail} tvOrMovie='movie' />
-   
-
-
-
+    <RenderCategory category="now_playing" navigateToDetail={navigateToDetail} tvOrMovie="movie" />
   );
 };
 

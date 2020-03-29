@@ -1,107 +1,90 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-use-before-define */
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  TextInput,
   Button,
   KeyboardAvoidingView,
   Dimensions,
   Alert,
   Keyboard,
   TouchableWithoutFeedback,
-  ActivityIndicator
-} from "react-native";
-import { Input } from "react-native-elements";
-import { Ionicons } from "@expo/vector-icons";
-import { requestTokenAndLogin } from "../store/actions/login";
-import {} from "redux";
-import { useDispatch, useSelector } from "react-redux";
-import { ThemeProvider } from "@react-navigation/native";
-import { primeFunc,primefunc2 } from "../store/actions/newLogin";
-import { Linking as l } from "expo";
-import { NavigationContainer, useLinking } from "@react-navigation/native";
-import * as SecureStore from 'expo-secure-store';
+  ActivityIndicator,
+} from 'react-native';
+import { } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Linking as l } from 'expo';
+import { useLinking } from '@react-navigation/native';
+import { primeFunc, primefunc2 } from '../store/actions/newLogin';
 
-
-
-
-
-const Login = props => {
+const Login = (props) => {
   const [loading, setloading] = useState(true);
-  const Dispatch=useDispatch();
-  const reqToken=useSelector(state=>state.store1.request_token);
-  
- 
- 
- 
- 
+  const Dispatch = useDispatch();
+  const reqToken = useSelector((state) => state.store1.request_token);
 
   const LoginFunc = async () => {
     setloading(false);
     try {
       await Dispatch(primeFunc());
     } catch (error) {
-      Alert.alert(error.message, "please handle errors.", [{ text: "ok" }]);
+      Alert.alert(error.message, 'please handle errors.', [{ text: 'ok' }]);
     }
     setloading(true);
   };
 
   const ref = React.useRef();
-  const prefix = l.makeUrl("/");
+  const prefix = l.makeUrl('/');
 
   const { getInitialState } = useLinking(ref, {
-    prefixes: [prefix]
+    prefixes: [prefix],
   });
 
   const navigate = () => {
-    console.log(reqToken)
-    primefunc2(reqToken)
-    props.navigation.navigate("categories");
+    console.log(reqToken);
+    primefunc2(reqToken);
+    props.navigation.navigate('categories');
   };
 
   useEffect(() => {
-    l.addEventListener("url", c => {
+    l.addEventListener('url', (c) => {
       if (c) {
         navigate();
       }
     });
     getInitialState()
-      .catch(e => log("Error"))
-      .then(state => {
+      .catch(() => console.log('Error'))
+      .then((state) => {
         if (state) {
           navigate();
         }
       });
 
     return () => {
-      l.removeAllListeners("url");
+      l.removeAllListeners('url');
     };
   });
-// const test=async()=>{
-  
-//   //await SecureStore.setItemAsync('number', '44')
-  
-//   const test= await SecureStore.getItemAsync('number')
-// console.log(test);
-// }
+  // const test=async()=>{
+
+  //   //await SecureStore.setItemAsync('number', '44')
+
+  //   const test= await SecureStore.getItemAsync('number')
+  // console.log(test);
+  // }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: "hsl(290, 20%, 20%)" }}
+        style={{ flex: 1, backgroundColor: 'hsl(290, 20%, 20%)' }}
         behavior="padding"
         keyboardVerticalOffset={10}
       >
         <View style={styles.container}>
           <View style={styles.button}>
-          {loading ? (
-            <Button title="Login" color="#ff4d4d" onPress={LoginFunc} />
-          ) : (
-            <ActivityIndicator size="large" color="gold" />
-          )}
-
-        
+            {loading ? (
+              <Button title="Login" color="#ff4d4d" onPress={LoginFunc} />
+            ) : (
+                <ActivityIndicator size="large" color="gold" />
+              )}
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -112,23 +95,23 @@ const Login = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "hsl(290, 20%, 20%)",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: 'hsl(290, 20%, 20%)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   input: {
-    height: Dimensions.get("screen").height * 0.06,
-    width: "90%",
-    margin: 20
+    height: Dimensions.get('screen').height * 0.06,
+    width: '90%',
+    margin: 20,
   },
   button: {
-    width: "85%",
-    marginTop: 20
+    width: '85%',
+    marginTop: 20,
   },
   inputText: {
-    color: "white",
-    marginLeft: 7
-  }
+    color: 'white',
+    marginLeft: 7,
+  },
 });
 
 export default Login;
