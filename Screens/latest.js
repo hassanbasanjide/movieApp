@@ -8,12 +8,16 @@ const MovieLatestScreen = (props) => {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
     });
   };
 
   return (
-    <RenderCategory category="latest" navigateToDetail={navigateToDetail} tvOrMovie="movie" />
+    <RenderCategory
+      category="latest"
+      navigateToDetail={navigateToDetail}
+      tvOrMovie="movie"
+    />
   );
 };
 

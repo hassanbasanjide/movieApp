@@ -8,12 +8,16 @@ const TvPopularScreen = (props) => {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
     });
   };
 
   return (
-    <RenderCategory category="popular" navigateToDetail={navigateToDetail} tvOrMovie="tv" />
+    <RenderCategory
+      category="popular"
+      navigateToDetail={navigateToDetail}
+      tvOrMovie="tv"
+    />
   );
 };
 

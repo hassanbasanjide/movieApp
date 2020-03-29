@@ -9,7 +9,7 @@ const MovieNowPlayingScreen = (props) => {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
     });
   };
 
@@ -21,9 +21,12 @@ const MovieNowPlayingScreen = (props) => {
     getAccountId();
   }, [getAccountId]);
 
-
   return (
-    <RenderCategory category="now_playing" navigateToDetail={navigateToDetail} tvOrMovie="movie" />
+    <RenderCategory
+      category="now_playing"
+      navigateToDetail={navigateToDetail}
+      tvOrMovie="movie"
+    />
   );
 };
 

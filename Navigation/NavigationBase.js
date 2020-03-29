@@ -13,7 +13,6 @@ import NowOnAirTv from '../Screens/tvScreens/NowOnAirTv';
 import PopularTv from '../Screens/tvScreens/PopularTv';
 import TopRatedTv from '../Screens/tvScreens/TopRatedTv';
 
-
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
@@ -24,11 +23,11 @@ const MovieTab = () => (
       inactiveTintColor: 'gray',
       tabStyle: {
         backgroundColor: 'hsl(290, 20%, 15%)',
-        paddingTop: 35
+        paddingTop: 35,
       },
       labelStyle: {
-        fontSize: 11
-      }
+        fontSize: 11,
+      },
     }}
   >
     <Tab.Screen name="nowPlaying" component={NowPlayingMovie} />
@@ -45,11 +44,11 @@ const tvTab = () => (
       inactiveTintColor: 'gray',
       tabStyle: {
         backgroundColor: 'hsl(290, 20%, 15%)',
-        paddingTop: 35
+        paddingTop: 35,
       },
       labelStyle: {
-        fontSize: 11
-      }
+        fontSize: 11,
+      },
     }}
   >
     <Tab.Screen name="nowPlaying" component={NowOnAirTv} />
@@ -66,8 +65,8 @@ const Categories = () => (
       activeTintColor: 'orange',
       inactiveTintColor: 'gray',
       tabStyle: {
-        backgroundColor: 'hsl(290, 20%, 15%)'
-      }
+        backgroundColor: 'hsl(290, 20%, 15%)',
+      },
     }}
   >
     <Tab.Screen name="Movie" component={MovieTab} />
@@ -79,14 +78,12 @@ const totalApp = () => (
   <NavigationContainer>
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Stack.Screen name="loginScreen" component={LoginScreen} />
       <Stack.Screen name="categories" component={Categories} />
       <Stack.Screen name="DetailComponents" component={DetailComponents} />
-
-
     </Stack.Navigator>
   </NavigationContainer>
 );

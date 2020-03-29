@@ -8,13 +8,16 @@ const TvNowOnAirScreen = (props) => {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
     });
   };
 
   return (
-    <RenderCategory category="on_the_air" navigateToDetail={navigateToDetail} tvOrMovie="tv" />
-
+    <RenderCategory
+      category="on_the_air"
+      navigateToDetail={navigateToDetail}
+      tvOrMovie="tv"
+    />
   );
 };
 

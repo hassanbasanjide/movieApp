@@ -1,16 +1,17 @@
-const initialstate = {
-  request_token: null
+const initialState = {
+  request_token: null,
 };
 
-const store1 = (state = initialstate, action) => {
+const store1 = (state = initialState, action) => {
   switch (action.type) {
-    case "newLogin":
+    case 'newLogin':
       return {
         ...state,
-        request_token: action.request_token
+        request_token: action.request_token,
       };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default store1;

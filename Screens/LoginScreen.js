@@ -1,20 +1,20 @@
 /* eslint-disable no-use-before-define */
-import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  Button,
-  KeyboardAvoidingView,
-  Dimensions,
-  Alert,
-  Keyboard,
-  TouchableWithoutFeedback,
-  ActivityIndicator,
-} from 'react-native';
-import { } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
-import { Linking as l } from 'expo';
 import { useLinking } from '@react-navigation/native';
+import { Linking as l } from 'expo';
+import React, { useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  Button,
+  Dimensions,
+  Keyboard,
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { } from 'redux';
 import { primeFunc, primefunc2 } from '../store/actions/newLogin';
 
 const Login = (props) => {

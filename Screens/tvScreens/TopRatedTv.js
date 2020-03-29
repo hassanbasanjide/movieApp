@@ -8,13 +8,16 @@ const TvTopRatedScreen = (props) => {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
     });
   };
 
   return (
-    <RenderCategory category="top_rated" navigateToDetail={navigateToDetail} tvOrMovie="tv" />
-
+    <RenderCategory
+      category="top_rated"
+      navigateToDetail={navigateToDetail}
+      tvOrMovie="tv"
+    />
   );
 };
 
