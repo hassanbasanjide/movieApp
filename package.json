@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@connected-home/react-native-android-shared-preferences": "^1.1.2",
     "@expo/vector-icons": "^10.0.6",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/compat": "^5.0.7",
@@ -16,10 +17,12 @@
     "@react-navigation/native": "^5.0.7",
     "@react-navigation/stack": "^5.0.8",
     "expo": "~36.0.0",
+    "expo-secure-store": "^8.1.0",
     "moment": "^2.24.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react-native-android-shared-preferences": "^1.0.6",
     "react-native-axios": "^0.17.1",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.6.0",

@@ -9,7 +9,8 @@ import {
   Dimensions,
   Alert,
   Keyboard,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ActivityIndicator
 } from "react-native";
 import { Input } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,70 +18,90 @@ import { requestTokenAndLogin } from "../store/actions/login";
 import {} from "redux";
 import { useDispatch, useSelector } from "react-redux";
 import { ThemeProvider } from "@react-navigation/native";
+import { primeFunc,primefunc2 } from "../store/actions/newLogin";
+import { Linking as l } from "expo";
+import { NavigationContainer, useLinking } from "@react-navigation/native";
+import * as SecureStore from 'expo-secure-store';
+
+
+
+
 
 const Login = props => {
-  const [username, setusername] = useState();
-  const [password, setpassword] = useState();
-  const Dispatch = useDispatch();
-  //const test=useSelector(state=>state.store1);
-  //console.log(test)
+  const [loading, setloading] = useState(true);
+  const Dispatch=useDispatch();
+  const reqToken=useSelector(state=>state.store1.request_token);
+  
+ 
+ 
+ 
+ 
 
-  const userNameChangeHandler = inputText => {
-    setusername(inputText.replace(/ /g, ""));
-  };
-
-  const passwordChangeHandler = inputText => {
-    setpassword(inputText.replace(/ /g, ""));
-  };
-
-  const submit = async (usename, pass) => {
+  const LoginFunc = async () => {
+    setloading(false);
     try {
-      await Dispatch(requestTokenAndLogin(usename, pass));
-
-      props.navigation.navigate("total");
+      await Dispatch(primeFunc());
     } catch (error) {
-      console.log(error);
-
-      Alert.alert("Some thing is Wrong", "Please Enter Correctly.", [
-        { text: "okay" }
-      ]);
+      Alert.alert(error.message, "please handle errors.", [{ text: "ok" }]);
     }
+    setloading(true);
   };
+
+  const ref = React.useRef();
+  const prefix = l.makeUrl("/");
+
+  const { getInitialState } = useLinking(ref, {
+    prefixes: [prefix]
+  });
+
+  const navigate = () => {
+    console.log(reqToken)
+    primefunc2(reqToken)
+    props.navigation.navigate("categories");
+  };
+
+  useEffect(() => {
+    l.addEventListener("url", c => {
+      if (c) {
+        navigate();
+      }
+    });
+    getInitialState()
+      .catch(e => log("Error"))
+      .then(state => {
+        if (state) {
+          navigate();
+        }
+      });
+
+    return () => {
+      l.removeAllListeners("url");
+    };
+  });
+// const test=async()=>{
+  
+//   //await SecureStore.setItemAsync('number', '44')
+  
+//   const test= await SecureStore.getItemAsync('number')
+// console.log(test);
+// }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
-        style={{ flex: 1,backgroundColor:'hsl(290, 20%, 20%)' }}
+        style={{ flex: 1, backgroundColor: "hsl(290, 20%, 20%)" }}
         behavior="padding"
         keyboardVerticalOffset={10}
       >
         <View style={styles.container}>
-          <Input
-            containerStyle={styles.input}
-            value={username}
-            onChangeText={userNameChangeHandler}
-            placeholder=" Username"
-            inputStyle={styles.inputText}
-            leftIcon={<Ionicons name="ios-person" color="white" size={24} />}
-            label="Enter your user name"
-          />
-          <Input
-            containerStyle={styles.input}
-            value={password}
-            onChangeText={passwordChangeHandler}
-            placeholder=" Password"
-            inputStyle={styles.inputText}
-            leftIcon={<Ionicons name="ios-lock" color="white" size={24} />}
-            label="Enter Password"
-            secureTextEntry={true}
-            blurOnSubmit
-          />
           <View style={styles.button}>
-            <Button
-              title="Login"
-              color="#ff4d4d"
-              onPress={submit.bind(this, username, password)}
-            />
+          {loading ? (
+            <Button title="Login" color="#ff4d4d" onPress={LoginFunc} />
+          ) : (
+            <ActivityIndicator size="large" color="gold" />
+          )}
+
+        
           </View>
         </View>
       </KeyboardAvoidingView>

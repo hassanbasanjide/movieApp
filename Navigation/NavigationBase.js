@@ -20,6 +20,7 @@ import LatestTv from "../Screens/tvScreens/LatestTv";
 import NowOnAirTv from "../Screens/tvScreens/NowOnAirTv";
 import PopularTv from "../Screens/tvScreens/PopularTv";
 import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
+import Loginscreen from '../Screens/Loginscreen';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -96,8 +97,11 @@ const totalApp = props => {
           headerShown: false
         }}
       >
+          <Stack.Screen name="loginScreen" component={Loginscreen} />
         <Stack.Screen name="categories" component={Categories} />
         <Stack.Screen name="DetailComponents" component={DetailComponents} />
+      
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

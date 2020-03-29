@@ -7,7 +7,7 @@ import store1 from './store/reducers/login';
 import movieReducer from './store/reducers/movies';
 import tvReducer from './store/reducers/tv';
 import reduxThunk from 'redux-thunk';
-import { NavigationContainer, useLinking } from "@react-navigation/native"
+//import { NavigationContainer, useLinking } from "@react-navigation/native"
 import { Linking as l } from "expo";
 
 
@@ -19,34 +19,11 @@ const fetchReducer = combineReducers({
 
 const preparedStore = createStore(fetchReducer, applyMiddleware(reduxThunk));
 
-const prefix = l.makeUrl('/');
+
 
 export default function App() {
 
-  // const ref = React.useRef();
-
-  // console.log(prefix);
-
-
-  // const { getInitialState } = useLinking(ref, {
-  //   prefixes: [prefix],
-  // });
-
-
-
-  React.useEffect(() => {
-    l.addEventListener('url', (c) => {
-      console.log(c);
-      const {path, queryParams} = l.parse(c);
-      console.log(queryParams);
-    });
-    // getInitialState().catch((e) => log("Error")).then(state => {
-
-    //   console.log(state);
-    // });
-  })
-
-
+  
   return (
     <Provider store={preparedStore}>
       <AppScreen />

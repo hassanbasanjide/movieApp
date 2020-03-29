@@ -45,6 +45,7 @@ const renderCategory = props => {
     <View style={styles.container}>
       <FlatList
         data={Data}
+        keyExtractor={(item,index)=>index.toString()}
         renderItem={itemData => {
           return (
             <RenderMovie

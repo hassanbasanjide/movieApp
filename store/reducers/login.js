@@ -1,27 +1,16 @@
-
-
-const initialstate={
-    session_id:null,
-    request_token:null,
-    global:null,
-    loginStart:false
-    
+const initialstate = {
+  request_token: null
 };
 
-const store1=(state=initialstate,action)=>{
-
-    switch (action.type) {
-        case 'login':
-            
-        return{...state,
-            request_token:action.request_token,
-            session_id:action.session_id,
-            global:action.global,
-            loginStart:true
-        };
-           
-    }
-    return state;
-}
+const store1 = (state = initialstate, action) => {
+  switch (action.type) {
+    case "newLogin":
+      return {
+        ...state,
+        request_token: action.request_token
+      };
+  }
+  return state;
+};
 
 export default store1;

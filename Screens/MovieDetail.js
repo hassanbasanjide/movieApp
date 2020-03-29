@@ -18,9 +18,9 @@ const DetailComponents =props=>{
 
     
 
- //   console.log(imageUrl);
+ 
 
- const test=["1","2"];
+
 
 
     return(
@@ -68,7 +68,8 @@ const styles=StyleSheet.create({
         height:Dimensions.get('screen').height*0.55,
         width:Dimensions.get('screen').width,
         alignItems:'center',
-        // backgroundColor:'gold'
+        marginTop:25
+       
         
     },
     container:{
