@@ -1,6 +1,8 @@
-import React,{ useEffect ,useCallback} from 'react';
-import { Text,View,StyleSheet, ImageBackground, Dimensions,FlatList} from 'react-native';
+import React,{ useEffect ,useCallback, useState} from 'react';
+import { Text,View,StyleSheet, ImageBackground, Dimensions,FlatList, Button} from 'react-native';
 import Star from '../components/Star';
+import { useSafeArea } from 'react-native-safe-area-context';
+import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 
 const DetailComponents =props=>{
@@ -12,7 +14,7 @@ const DetailComponents =props=>{
 
 
     
-
+const [line,setline]=useState(5)
 
     
 
@@ -47,12 +49,18 @@ const DetailComponents =props=>{
                 </View>
 
 
-                <View style={styles.description}>
-                <Text numberOfLines={5} style={{color:'rgba(255,255,255,0.6)',fontSize:17}}>{Description}</Text>
-                </View>
-    
+                <ScrollView style={styles.description}>
+                <Text numberOfLines={line} style={{color:'rgba(255,255,255,0.6)',fontSize:17}}>{Description}
+                
+                </Text>
+            
+                </ScrollView>
+                <TouchableOpacity onPress={()=>setline(15)}>
+                    <Text style={{color:'gold'}}>more</Text>
+                </TouchableOpacity>
                 
                 </View>
+               
             </ImageBackground>
 
             
@@ -73,7 +81,7 @@ const styles=StyleSheet.create({
         
     },
     container:{
-        height:Dimensions.get('screen').height*0.34,
+      //  height:Dimensions.get('screen').height*0.34,
         width:Dimensions.get('screen').width*0.95,
         backgroundColor:'rgb(100,0,100)',
         marginTop:250,
@@ -98,7 +106,10 @@ const styles=StyleSheet.create({
     },
     description:{
         marginTop:35,
-        marginRight:5
+        marginRight:5,
+        marginBottom:40,
+        height:150,
+       
     },
     star:{
         borderWidth:1,
