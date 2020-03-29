@@ -4,7 +4,7 @@ const initialState = {
 
 const store1 = (state = initialState, action) => {
   switch (action.type) {
-    case 'newLogin':
+    case "newLogin":
       return {
         ...state,
         request_token: action.request_token,

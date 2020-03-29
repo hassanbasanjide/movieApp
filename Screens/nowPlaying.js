@@ -1,11 +1,11 @@
 /* eslint-disable linebreak-style */
-import * as SecureStore from 'expo-secure-store';
-import React, { useEffect } from 'react';
-import RenderCategory from '../components/RenderCategory';
+import * as SecureStore from "expo-secure-store";
+import React, { useEffect } from "react";
+import RenderCategory from "../components/RenderCategory";
 
 const MovieNowPlayingScreen = (props) => {
   const navigateToDetail = (title, imageUrl, description, voteAverage) => {
-    props.navigation.navigate('DetailComponents', {
+    props.navigation.navigate("DetailComponents", {
       title,
       imageUrl,
       description,
@@ -14,7 +14,7 @@ const MovieNowPlayingScreen = (props) => {
   };
 
   const getAccountId = async () => {
-    const test = await SecureStore.getItemAsync('account_id');
+    const test = await SecureStore.getItemAsync("account_id");
     console.log(test);
   };
   useEffect(() => {

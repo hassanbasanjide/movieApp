@@ -1,16 +1,16 @@
-import { API_KEY } from '../../utils/constants';
+import { API_KEY } from "../../utils/constants";
 
-export const GET_TV_DATA = 'GET_TV_DATA';
+export const GET_TV_DATA = "GET_TV_DATA";
 
 export const getTvData = (category) => {
-  const page = '1';
-  const language = 'en-US';
+  const page = "1";
+  const language = "en-US";
 
   return async (Dispatch) => {
     try {
       let response;
       let Result;
-      if (category === 'latest') {
+      if (category === "latest") {
         response = await fetch(
           `https://api.themoviedb.org/3/tv/latest?api_key=${API_KEY}&language=${language}`
         );
@@ -25,7 +25,7 @@ export const getTvData = (category) => {
       }
 
       if (!response.ok) {
-        throw new Error('Some thing is going wrong.');
+        throw new Error("Some thing is going wrong.");
       }
 
       Dispatch({
@@ -34,7 +34,7 @@ export const getTvData = (category) => {
         CategoryType: category,
       });
     } catch (error) {
-      console.log('error');
+      console.log("error");
       throw error;
     }
   };

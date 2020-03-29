@@ -1,17 +1,17 @@
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
-import LatestMovie from '../Screens/latest';
-import LoginScreen from '../Screens/LoginScreen';
-import DetailComponents from '../Screens/MovieDetail';
-import NowPlayingMovie from '../Screens/nowPlaying';
-import PopularMovie from '../Screens/popular';
-import TopRatedMovie from '../Screens/topRatad';
-import LatestTv from '../Screens/tvScreens/LatestTv';
-import NowOnAirTv from '../Screens/tvScreens/NowOnAirTv';
-import PopularTv from '../Screens/tvScreens/PopularTv';
-import TopRatedTv from '../Screens/tvScreens/TopRatedTv';
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import React from "react";
+import LatestMovie from "../Screens/latest";
+import LoginScreen from "../Screens/LoginScreen";
+import DetailComponents from "../Screens/MovieDetail";
+import NowPlayingMovie from "../Screens/nowPlaying";
+import PopularMovie from "../Screens/popular";
+import TopRatedMovie from "../Screens/topRatad";
+import LatestTv from "../Screens/tvScreens/LatestTv";
+import NowOnAirTv from "../Screens/tvScreens/NowOnAirTv";
+import PopularTv from "../Screens/tvScreens/PopularTv";
+import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -19,10 +19,10 @@ const Tab = createMaterialTopTabNavigator();
 const MovieTab = () => (
   <Tab.Navigator
     tabBarOptions={{
-      activeTintColor: 'orange',
-      inactiveTintColor: 'gray',
+      activeTintColor: "orange",
+      inactiveTintColor: "gray",
       tabStyle: {
-        backgroundColor: 'hsl(290, 20%, 15%)',
+        backgroundColor: "hsl(290, 20%, 15%)",
         paddingTop: 35,
       },
       labelStyle: {
@@ -40,10 +40,10 @@ const MovieTab = () => (
 const tvTab = () => (
   <Tab.Navigator
     tabBarOptions={{
-      activeTintColor: 'orange',
-      inactiveTintColor: 'gray',
+      activeTintColor: "orange",
+      inactiveTintColor: "gray",
       tabStyle: {
-        backgroundColor: 'hsl(290, 20%, 15%)',
+        backgroundColor: "hsl(290, 20%, 15%)",
         paddingTop: 35,
       },
       labelStyle: {
@@ -62,10 +62,10 @@ const Categories = () => (
   <Tab.Navigator
     tabBarPosition="bottom"
     tabBarOptions={{
-      activeTintColor: 'orange',
-      inactiveTintColor: 'gray',
+      activeTintColor: "orange",
+      inactiveTintColor: "gray",
       tabStyle: {
-        backgroundColor: 'hsl(290, 20%, 15%)',
+        backgroundColor: "hsl(290, 20%, 15%)",
       },
     }}
   >

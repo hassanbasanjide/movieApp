@@ -7,17 +7,17 @@ const initialState = {
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'recive_movie_data':
-      if (action.CategoryType === 'now_playing') {
+    case "recive_movie_data":
+      if (action.CategoryType === "now_playing") {
         return { ...state, now_playing: action.data };
       }
-      if (action.CategoryType === 'popular') {
+      if (action.CategoryType === "popular") {
         return { ...state, popular: action.data };
       }
-      if (action.CategoryType === 'top_rated') {
+      if (action.CategoryType === "top_rated") {
         return { ...state, top_rated: action.data };
       }
-      if (action.CategoryType === 'latest') {
+      if (action.CategoryType === "latest") {
         return { ...state, latest: action.data };
       }
       break;

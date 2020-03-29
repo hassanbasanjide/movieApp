@@ -1,4 +1,4 @@
-import { API_KEY, BASE_URL } from '../../utils/constants';
+import { API_KEY, BASE_URL } from "../../utils/constants";
 
 export default (username, password) => {
   return async (dispatch) => {
@@ -8,7 +8,7 @@ export default (username, password) => {
       );
 
       if (!response.ok) {
-        throw new Error('Something is wrong!');
+        throw new Error("Something is wrong!");
       }
 
       const resData = await response.json();
@@ -22,7 +22,7 @@ export default (username, password) => {
       const userData = await getUserData(sessionId);
 
       dispatch({
-        type: 'login',
+        type: "login",
         session_id: sessionId,
         request_token: requestToken,
         global: userData,
@@ -39,9 +39,9 @@ const validateWithLogin = async (username, password, requestToken) => {
     const response1 = await fetch(
       `${BASE_URL}/authentication/token/validate_with_login?api_key=${API_KEY}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           username,
@@ -51,7 +51,7 @@ const validateWithLogin = async (username, password, requestToken) => {
       }
     );
     if (!response1.ok) {
-      throw new Error('Something is wrong!');
+      throw new Error("Something is wrong!");
     }
   } catch (e) {
     console.log(`this is the error: ${e}`);
@@ -64,9 +64,9 @@ const createSession = async (requestToken) => {
     const response = await fetch(
       `${BASE_URL}/authentication/session/new?api_key=${API_KEY}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           request_token: requestToken,
@@ -74,7 +74,7 @@ const createSession = async (requestToken) => {
       }
     );
     if (!response.ok) {
-      throw new Error('Something is wrong!');
+      throw new Error("Something is wrong!");
     }
 
     const resData = await response.json();
@@ -93,7 +93,7 @@ const getUserData = async (sessionId) => {
     );
 
     if (!response.ok) {
-      throw new Error('Something is wrong!');
+      throw new Error("Something is wrong!");
     }
 
     return await response.json();
