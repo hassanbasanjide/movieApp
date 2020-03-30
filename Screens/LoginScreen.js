@@ -20,7 +20,6 @@ import {} from 'redux';
 import { primeFunc, primefunc2 } from '../store/actions/newLogin';
 
 const Login = props => {
-  const [loading, setloading] = useState(true);
   const [componets, setComponents] = useState(
     <Text style={styles.start}>MovieDB</Text>
   );
@@ -29,7 +28,6 @@ const Login = props => {
   const Dispatch = useDispatch();
 
   const LoginFunc = async () => {
-    //setloading(false);
     const reqtoken = await SecureStore.getItemAsync('req_token');
     let validationResult;
     try {
@@ -41,17 +39,16 @@ const Login = props => {
     if (validationResult) {
       props.navigation.navigate('categories');
     } else {
-      setComponents(<View style={styles.button}>
-        <Button color="darkred" title="login" onPress={()=>Loginfunc2()} />
-      </View>)
+      setComponents(
+        <View style={styles.button}>
+          <Button color="darkred" title="login" onPress={() => Loginfunc2()} />
+        </View>
+      );
     }
-  
-
-    
   };
 
   const Loginfunc2 = async () => {
-    setComponents(<ActivityIndicator size="large" color="gold"/>)
+    setComponents(<ActivityIndicator size="large" color="gold" />);
     try {
       await Dispatch(primeFunc());
     } catch (error) {
@@ -67,7 +64,6 @@ const Login = props => {
   });
 
   const navigate = () => {
-    
     props.navigation.navigate('categories');
   };
 
@@ -86,12 +82,9 @@ const Login = props => {
       });
 
     LoginFunc();
-    console.log('returend')
+   
 
-    return () =>
-      l.removeAllListeners('url');
-      
-    
+    return () => l.removeAllListeners('url');
   });
 
   if (resultValidate) {
@@ -119,8 +112,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '85%',
-    marginTop: 20,
-  
+    marginTop: 20
   },
   inputText: {
     color: 'white',

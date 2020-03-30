@@ -12,6 +12,7 @@ import LatestTv from "../Screens/tvScreens/LatestTv";
 import NowOnAirTv from "../Screens/tvScreens/NowOnAirTv";
 import PopularTv from "../Screens/tvScreens/PopularTv";
 import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
+import {ScrollableTabView} from '@valdio/react-native-scrollable-tabview'
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -28,9 +29,10 @@ const MovieTab = () => (
       labelStyle: {
         fontSize: 11,
       },
+      scrollEnabled :true
     }}
   >
-    <Tab.Screen name="nowPlaying" component={NowPlayingMovie} />
+    <Tab.Screen name="nowPlaying" component={NowPlayingMovie} options={{title:'now'}}/>
     <Tab.Screen name="popular" component={PopularMovie} />
     <Tab.Screen name="topRatad" component={TopRatedMovie} />
     <Tab.Screen name="latest" component={LatestMovie} />
@@ -49,9 +51,11 @@ const tvTab = () => (
       labelStyle: {
         fontSize: 11,
       },
+      scrollEnabled :true,
+      backBehavior:"initialRoute"
     }}
   >
-    <Tab.Screen name="nowPlaying" component={NowOnAirTv} />
+    <Tab.Screen name="nowPlaying" component={NowOnAirTv} options={{title:'now'}}/>
     <Tab.Screen name="popular" component={PopularTv} />
     <Tab.Screen name="topRatad" component={TopRatedTv} />
     <Tab.Screen name="latest" component={LatestTv} />
@@ -88,15 +92,6 @@ const totalApp = () => (
   </NavigationContainer>
 );
 
-// const styles = StyleSheet.create({
-//   bar: {
-//     flexDirection: "row",
-//     marginLeft: 10,
-//     justifyContent: "space-between"
-//   },
-//   eachContainer: {
-//     marginHorizontal: 16
-//   }
-// });
+
 
 export default totalApp;
