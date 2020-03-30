@@ -1,26 +1,40 @@
 /* eslint-disable linebreak-style */
-import * as SecureStore from "expo-secure-store";
-import React, { useEffect } from "react";
-import RenderCategory from "../components/RenderCategory";
+import * as SecureStore from 'expo-secure-store';
+import React, { useEffect } from 'react';
+import { BackHandler, Alert } from 'react-native';
+import RenderCategory from '../components/RenderCategory';
 
-const MovieNowPlayingScreen = (props) => {
+const MovieNowPlayingScreen = props => {
   const navigateToDetail = (title, imageUrl, description, voteAverage) => {
-    props.navigation.navigate("DetailComponents", {
+    props.navigation.navigate('DetailComponents', {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage,
+      vote_average: voteAverage
     });
   };
-
-  const getAccountId = async () => {
-    const test = await SecureStore.getItemAsync("account_id");
-    console.log(test);
+  const backAction = () => {
+    Alert.alert('Hold on!', 'Are you sure you want to exit App?', [
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel'
+      },
+      { text: 'YES', onPress: () => BackHandler.exitApp() }
+    ]);
+    return true;
   };
-  useEffect(() => {
-    getAccountId();
-  }, [getAccountId]);
 
+  useEffect(() => {
+    props.navigation.addListener('focus', () => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    });
+    props.navigation.addListener('blur', () => {
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+    });
+  }, []);
+
+  
   return (
     <RenderCategory
       category="now_playing"
