@@ -10,18 +10,22 @@ import {
 } from 'react-native';
 
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-
+import { Ionicons } from "@expo/vector-icons";
+import FadeInOut from 'react-native-fade-in-out';
 import Star from '../components/Star';
 
+
 const DetailComponents = props => {
+  // this.backOpacity = this.animatedValue.interpolate({ inputRange: [89, 90], outputRange: [0, 1] })
   const { route } = props;
   const { title, imageUrl, description } = route.params;
   const rate = route.params.vote_average;
   const [line, setLine] = useState(4);
   const [name,setname]=useState('more');
+  const [visibaleRateContainer,setvisibaleRateContainer]=useState(false);
 
-  const toggleComponent = () => {
-    setComponents();
+  const toggleVisible = () => {
+    setvisibaleRateContainer(prevState=>!prevState);
   };
 
   return (
@@ -41,7 +45,22 @@ const DetailComponents = props => {
             </Text>
 
             <Star popularity={rate} size={25} />
+
+            <TouchableOpacity style={styles.rateButton}  onPress={toggleVisible.bind(this)}>
+              <Ionicons name="ios-star" size={20} color="gold" />
+            </TouchableOpacity>
           </View>
+          <View style={{height:5}}>
+          <FadeInOut visible={visibaleRateContainer} style={styles.rateScreen}>
+            <View>
+            
+          
+         
+
+            </View>
+          </FadeInOut>
+          </View>
+         
           <View style={styles.description}>
             <Text
               numberOfLines={line}
@@ -62,6 +81,7 @@ const DetailComponents = props => {
             </TouchableOpacity>
           </View>
           </View>
+         
 
           
       </ImageBackground>
@@ -118,7 +138,26 @@ const styles = StyleSheet.create({
   },
   more: {
     alignItems: 'center'
-  }
+  },
+  rateButton:{
+    backgroundColor:'hsl(290, 20%, 20%)',
+    height:Dimensions.get('screen').height * 0.05,
+    width:Dimensions.get('screen').height * 0.05,
+    borderRadius:Dimensions.get('screen').height * 0.05,
+    alignItems:'center',
+    justifyContent:'center',
+    marginLeft:20
+  },
+
+    rateScreen: {
+      width: 100*2,
+      height: 100,
+      borderRadius: 5,
+      backgroundColor: 'red',
+      
+     
+    },
+  
 });
 
 export default DetailComponents;

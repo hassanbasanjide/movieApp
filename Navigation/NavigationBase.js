@@ -12,7 +12,7 @@ import LatestTv from "../Screens/tvScreens/LatestTv";
 import NowOnAirTv from "../Screens/tvScreens/NowOnAirTv";
 import PopularTv from "../Screens/tvScreens/PopularTv";
 import TopRatedTv from "../Screens/tvScreens/TopRatedTv";
-import {ScrollableTabView} from '@valdio/react-native-scrollable-tabview'
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();

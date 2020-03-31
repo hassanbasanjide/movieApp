@@ -58,6 +58,9 @@ export const primefunc2 = async reqToken => {
       }
     );
     const resData = await response.json();
+    if(resData.success){
+      console.log(resData)
+    }
     
     return resData.success;
 
