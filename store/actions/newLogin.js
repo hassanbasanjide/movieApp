@@ -59,7 +59,10 @@ export const primefunc2 = async reqToken => {
     );
     const resData = await response.json();
     if(resData.success){
-      console.log(resData)
+      await SecureStore.setItemAsync(
+        'acount_id',
+        resData.account_id.toString()
+      );
     }
     
     return resData.success;

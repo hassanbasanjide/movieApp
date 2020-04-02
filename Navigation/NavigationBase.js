@@ -85,7 +85,7 @@ const totalApp = () => (
         headerShown: false,
       }}
     >
-      {/* <Stack.Screen name="loginScreen" component={LoginScreen} /> */}
+       <Stack.Screen name="loginScreen" component={LoginScreen} />
       <Stack.Screen name="categories" component={Categories} />
       <Stack.Screen name="DetailComponents" component={DetailComponents} />
     </Stack.Navigator>

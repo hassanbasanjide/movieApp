@@ -1,9 +1,17 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import {useDispatch} from 'react-redux';
+import {reciveRate} from '../store/actions/Rate';
 
 const RateSection = props => {
   const [name, setName] = useState('ios-star-outline');
+  const dispatch = useDispatch();
+  const getRates = async () => dispatch(reciveRate());
+  useEffect(() => {
+    getRates();
+  },[])
+
 
   return (
     <View style={styles.container}>
