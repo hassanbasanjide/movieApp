@@ -35,6 +35,8 @@ const renderCategory = (props) => {
     Data = useSelector((state) => state.tv[props.category]);
   }
 
+  
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -55,6 +57,8 @@ const renderCategory = (props) => {
                   : itemData.item.first_air_date
               }
               rate={itemData.item.vote_average}
+
+              id={itemData.item.id}
               detailFunc={props.navigateToDetail.bind(
                 this,
                 props.tvOrMovie === "movie"
@@ -62,7 +66,8 @@ const renderCategory = (props) => {
                   : itemData.item.name,
                 itemData.item.poster_path,
                 itemData.item.overview,
-                itemData.item.vote_average
+                itemData.item.vote_average,
+                itemData.item.id
               )}
             />
           );

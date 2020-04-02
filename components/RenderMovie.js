@@ -26,6 +26,8 @@ const RenderMovie = (props) => {
     TouchComponenets = TouchableWithoutFeedback;
   }
 
+  
+
   return (
     <View>
       <View style={styles.imageContainer}>

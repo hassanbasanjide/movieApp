@@ -5,12 +5,13 @@ import { BackHandler, Alert } from 'react-native';
 import RenderCategory from '../components/RenderCategory';
 
 const MovieNowPlayingScreen = props => {
-  const navigateToDetail = (title, imageUrl, description, voteAverage) => {
+  const navigateToDetail = (title, imageUrl, description, voteAverage,id) => {
     props.navigation.navigate('DetailComponents', {
       title,
       imageUrl,
       description,
-      vote_average: voteAverage
+      vote_average: voteAverage,
+      id
     });
   };
   const backAction = () => {

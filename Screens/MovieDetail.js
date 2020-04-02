@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from 'react';
-
+import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
 import {
   Dimensions,
   ImageBackground,
   StyleSheet,
   Text,
-  View,
-  BackHandler
+  View
 } from 'react-native';
-
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { Ionicons } from "@expo/vector-icons";
 import FadeInOut from 'react-native-fade-in-out';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Star from '../components/Star';
-
+import RateSection from '../components/RateSection';
 
 const DetailComponents = props => {
-  // this.backOpacity = this.animatedValue.interpolate({ inputRange: [89, 90], outputRange: [0, 1] })
   const { route } = props;
-  const { title, imageUrl, description } = route.params;
+  const { title, imageUrl, description, id } = route.params;
   const rate = route.params.vote_average;
   const [line, setLine] = useState(4);
-  const [name,setname]=useState('more');
-  const [visibaleRateContainer,setvisibaleRateContainer]=useState(false);
+  const [name, setname] = useState('more');
+  const [visibaleRateContainer, setvisibaleRateContainer] = useState(false);
 
   const toggleVisible = () => {
-    setvisibaleRateContainer(prevState=>!prevState);
+    setvisibaleRateContainer(prevState => !prevState);
   };
 
   return (
@@ -46,21 +42,22 @@ const DetailComponents = props => {
 
             <Star popularity={rate} size={25} />
 
-            <TouchableOpacity style={styles.rateButton}  onPress={toggleVisible.bind(this)}>
+            <TouchableOpacity
+              style={styles.rateButton}
+              onPress={toggleVisible.bind(this)}
+            >
               <Ionicons name="ios-star" size={20} color="gold" />
             </TouchableOpacity>
           </View>
-          <View style={{height:5}}>
-          <FadeInOut visible={visibaleRateContainer} style={styles.rateScreen}>
-            <View>
-            
-          
-         
-
-            </View>
-          </FadeInOut>
+          <View style={{ height: 40 }}>
+            <FadeInOut
+              visible={visibaleRateContainer}
+              style={styles.rateScreen}
+            >
+              <RateSection />
+            </FadeInOut>
           </View>
-         
+
           <View style={styles.description}>
             <Text
               numberOfLines={line}
@@ -68,22 +65,22 @@ const DetailComponents = props => {
             >
               {description}
             </Text>
-            <TouchableOpacity onPress={() =>{
-              if(name==='more'){
-                setLine(15);
-                setname('close');
-              }else{
-                setLine(4);
-                setname('more');
-              }
-            }} style={styles.more}>
-  <Text style={{ color: 'gold' }}>{name}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                if (name === 'more') {
+                  setLine(15);
+                  setname('close');
+                } else {
+                  setLine(4);
+                  setname('more');
+                }
+              }}
+              style={styles.more}
+            >
+              <Text style={{ color: 'gold' }}>{name}</Text>
             </TouchableOpacity>
           </View>
-          </View>
-         
-
-          
+        </View>
       </ImageBackground>
     </View>
   );
@@ -110,8 +107,7 @@ const styles = StyleSheet.create({
 
   title: {
     height: Dimensions.get('screen').height * 0.05,
-    width: '98%',
-  
+    width: '98%'
   },
 
   rate: {
@@ -119,16 +115,13 @@ const styles = StyleSheet.create({
     width: '98%',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 1,
-    
+    marginTop: 1
   },
 
   description: {
     marginTop: 15,
     marginRight: 5,
-    marginBottom: 20,
-
-    
+    marginBottom: 20
   },
 
   star: {
@@ -137,27 +130,27 @@ const styles = StyleSheet.create({
     marginLeft: 3
   },
   more: {
-    alignItems: 'center'
+    alignItems: 'center',
+    height: 20,
+    width: 40
   },
-  rateButton:{
-    backgroundColor:'hsl(290, 20%, 20%)',
-    height:Dimensions.get('screen').height * 0.05,
-    width:Dimensions.get('screen').height * 0.05,
-    borderRadius:Dimensions.get('screen').height * 0.05,
-    alignItems:'center',
-    justifyContent:'center',
-    marginLeft:20
+  rateButton: {
+    backgroundColor: 'hsl(290, 20%, 20%)',
+    height: Dimensions.get('screen').height * 0.05,
+    width: Dimensions.get('screen').height * 0.05,
+    borderRadius: Dimensions.get('screen').height * 0.05,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 20
   },
 
-    rateScreen: {
-      width: 100*2,
-      height: 100,
-      borderRadius: 5,
-      backgroundColor: 'red',
-      
-     
-    },
-  
+  rateScreen: {
+    width: 100 * 2.5,
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: 'hsl(290, 20%, 20%)',
+    backfaceVisibility: 'hidden'
+  }
 });
 
 export default DetailComponents;
