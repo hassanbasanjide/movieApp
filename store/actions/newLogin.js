@@ -63,6 +63,13 @@ export const primefunc2 = async reqToken => {
         'acount_id',
         resData.account_id.toString()
       );
+      await SecureStore.setItemAsync(
+        'access_token',
+        resData.access_token.toString()
+      );
+
+
+      console.log(resData)
     }
     
     return resData.success;

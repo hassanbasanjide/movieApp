@@ -1,13 +1,29 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {reciveRate} from '../store/actions/Rate';
 import RateAbleStar from '../components/rateAbleStars';
+import { State } from 'react-native-gesture-handler';
 
 const RateSection = props => {
   const dispatch = useDispatch();
-  const getRates = async () => dispatch(reciveRate());
+    const data=useSelector(state=>state.movie.Rated);
+    let Rate;
+
+    console.log(data)
+  const getRates = async () =>{
+   await dispatch(reciveRate());
+   if(data.length!==0){
+    const target=data.find(item=>item.id===props.id);
+    Rate=target.account_rating.value;
+   }else{
+     Rate=0;
+   }
+   
+
+    }
+
   useEffect(() => {
     getRates();
   },[])

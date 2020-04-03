@@ -3,6 +3,7 @@ const initialState = {
   popular: null,
   top_rated: null,
   latest: null,
+  Rated:[]
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -20,8 +21,9 @@ const movieReducer = (state = initialState, action) => {
       if (action.CategoryType === "latest") {
         return { ...state, latest: action.data };
       }
-      break;
-    default:
+      case 'RECIVE_RATE':
+      return{...state,Rated:action.data}
+
       return state;
   }
   return state;

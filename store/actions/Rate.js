@@ -3,30 +3,36 @@ import * as SecureStore from 'expo-secure-store';
 
 
 export const reciveRate=()=>{
+
+    const page=1;
   
     return async dispatch=>{
         try {
             
             const accountId =  await SecureStore.getItemAsync('acount_id');
-                console.log(accountId)
+            const access_token =  await SecureStore.getItemAsync('access_token');
+        
         
             const recivedRateds = await fetch(
-                `https://api.themoviedb.org/4/account/${accountId}/movie/rated?page=1`,{
+                `https://api.themoviedb.org/4/account/${accountId}/movie/rated?page=${page}`,{
                     method: 'GET',
                     headers: {
-                        'Authorization': `Bearer ${ACCESS_TOKEN}`
+                        'Authorization': `Bearer ${access_token}`
                     }
                 }
             );
 
             const ratedList = await recivedRateds.json();
-            console.log(ratedList);
+
+            dispatch({
+                type:'RECIVE_RATE',
+                data:ratedList.results
+            })
+            
         } catch(error) {
             throw error
         }
 
-        dispatch({
-            type:'RECIVE_RATE'
-        })
+        
     }
 }

@@ -55,7 +55,7 @@ const DetailComponents = props => {
               visible={visibaleRateContainer}
               style={styles.rateScreen}
             >
-              <RateSection />
+              <RateSection id={id}/>
             </FadeInOut>
           </View>
 
