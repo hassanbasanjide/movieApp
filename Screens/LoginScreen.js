@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {} from 'redux';
 import { primeFunc, primefunc2 } from '../store/actions/newLogin';
 
+
 const Login = props => {
   const [componets, setComponents] = useState(
     <Text style={styles.start}>MovieDB</Text>
@@ -43,6 +44,8 @@ const Login = props => {
         <View style={styles.button}>
           <Button color="darkred" title="login" onPress={() => Loginfunc2()} />
         </View>
+
+        
       );
     }
   };

@@ -12,6 +12,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Star from '../components/Star';
 import RateSection from '../components/RateSection';
 
+
 const DetailComponents = props => {
   const { route } = props;
   const { title, imageUrl, description, id } = route.params;

@@ -3,9 +3,9 @@ import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import {useDispatch} from 'react-redux';
 import {reciveRate} from '../store/actions/Rate';
+import RateAbleStar from '../components/rateAbleStars';
 
 const RateSection = props => {
-  const [name, setName] = useState('ios-star-outline');
   const dispatch = useDispatch();
   const getRates = async () => dispatch(reciveRate());
   useEffect(() => {
@@ -21,23 +21,8 @@ const RateSection = props => {
       >
         <Ionicons name="ios-remove" size={30} color="red" />
       </TouchableOpacity>
-      <View style={styles.starContainer}>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={'ios-star'} size={30} color="gold" />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
-        </TouchableOpacity>
+      <View>
+        <RateAbleStar initialRate={3} />
       </View>
     </View>
   );
