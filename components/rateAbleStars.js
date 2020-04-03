@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import {rateMovie} from '../store/actions/rateMovie';
+import {useDispatch} from 'react-redux';
 
 const RateAbleStar = (props) => {
     const [rate, setRate] = useState(props.initialRate);
+    const dispatch = useDispatch();
   const stars = (pop, starNum) => {
     const a = pop / 2 - starNum;
     if (a >= 1) {
@@ -16,7 +19,9 @@ const RateAbleStar = (props) => {
   };
 
   const tapStarHandler = (starNum) => {
-    setRate(2*starNum); 
+    const value = 2*starNum;
+    setRate(value);
+    dispatch(rateMovie(props.movieId, value)); 
   }
 
   return (

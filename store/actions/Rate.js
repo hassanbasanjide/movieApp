@@ -1,4 +1,4 @@
-import { API_KEY,ACCESS_TOKEN } from "../../utils/constants";
+import { API_KEY, ACCESS_TOKEN } from "../../utils/constants";
 import * as SecureStore from 'expo-secure-store';
 
 

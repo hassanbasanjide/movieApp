@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions, TouchableOpacity, ProgressViewIOSComponent } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {reciveRate} from '../store/actions/Rate';
@@ -9,9 +9,10 @@ import { State } from 'react-native-gesture-handler';
 const RateSection = props => {
   const dispatch = useDispatch();
     const data=useSelector(state=>state.movie.Rated);
+    const target = data.find(item => item.id===props.id);
     let Rate;
 
-    console.log(data)
+    console.log(data);
   const getRates = async () =>{
    await dispatch(reciveRate());
    if(data.length!==0){
@@ -20,9 +21,7 @@ const RateSection = props => {
    }else{
      Rate=0;
    }
-   
-
-    }
+   }
 
   useEffect(() => {
     getRates();
@@ -38,7 +37,7 @@ const RateSection = props => {
         <Ionicons name="ios-remove" size={30} color="red" />
       </TouchableOpacity>
       <View>
-        <RateAbleStar initialRate={3} />
+        <RateAbleStar initialRate={Rate} movieId={props.id} />
       </View>
     </View>
   );
