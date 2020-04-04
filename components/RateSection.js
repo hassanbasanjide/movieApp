@@ -1,58 +1,136 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+  Alert
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import {useDispatch, useSelector} from 'react-redux';
-import {reciveRate} from '../store/actions/Rate';
+import { useDispatch, useSelector } from 'react-redux';
+import { reciveRate,deleteRate,setRateMovie } from '../store/actions/Rate';
 import { State } from 'react-native-gesture-handler';
 
 const RateSection = props => {
-  const [name, setName] = useState('ios-star-outline');
+
+  const [star1, setStar1] = useState('ios-star-outline');
+  const [star2, setStar2] = useState('ios-star-outline');
+  const [star3, setStar3] = useState('ios-star-outline');
+  const [star4, setStar4] = useState('ios-star-outline');
+  const [star5, setStar5] = useState('ios-star-outline');
   const dispatch = useDispatch();
-    const data=useSelector(state=>state.movie.Rated);
-    let Rate;
+ 
+  let Rate;
 
-    console.log(data)
-  const getRates = async () =>{
-   await dispatch(reciveRate());
-   if(data.length!==0){
-    const target=data.find(item=>item.id===props.id);
-    Rate=target.account_rating.value;
-   }else{
-     Rate=0;
-   }
-   
-
+  const getRates = async () => {
+ 
+    try {
+      const data =  await reciveRate();
+      if (data.length !== 0) {
+        const target = data.find(item => item.id === props.id);
+       
+        if (target) {
+          Rate = target.account_rating.value;
+         console.log(Rate)
+          initialTurnOnStars(Rate,'INIT');
+        } else {
+          Rate = 0;
+        }
+      }
+      
+    } catch (error) {
+      Alert.alert('Error!', 'Some Thing Is wrong', [{ text: 'ok' }]);
     }
+  };
+
+  const initialTurnOnStars = (Rate,type) => {
+    const finalRate=Math.floor(Rate/2);
+    if(type==='SET'){
+      setRateMovie(Rate,props.id)
+    }
+    
+     switch (finalRate) {
+       case 1:
+         setStar1('ios-star')
+         setStar2('ios-star-outline')
+         setStar3('ios-star-outline')
+         setStar4('ios-star-outline')
+         setStar5('ios-star-outline')
+         break;
+         case 2:
+          setStar1('ios-star')
+         setStar2('ios-star')
+         setStar3('ios-star-outline')
+         setStar4('ios-star-outline')
+         setStar5('ios-star-outline')
+         break;
+         case 3:
+          setStar1('ios-star')
+          setStar2('ios-star')
+         setStar3('ios-star')
+         setStar4('ios-star-outline')
+         setStar5('ios-star-outline')
+         break;
+         case 4:
+          setStar1('ios-star')
+          setStar2('ios-star')
+          setStar3('ios-star')
+         setStar4('ios-star')
+         setStar5('ios-star-outline')
+
+         break;
+         case 5:
+          setStar1('ios-star')
+          setStar2('ios-star')
+          setStar3('ios-star')
+          setStar4('ios-star')
+          setStar5('ios-star')
+          break;
+     
+  
+     }
+  };
+
+  const removeStar=async()=>{
+    
+    try {
+      await deleteRate(props.id)
+      setStar1('ios-star-outline')
+      setStar2('ios-star-outline')
+      setStar3('ios-star-outline')
+      setStar4('ios-star-outline')
+      setStar5('ios-star-outline')
+    } catch (error) {
+      Alert.alert(error.message, 'Some Thing Is wrong', [{ text: 'ok' }]);
+    }
+  
+  }
 
   useEffect(() => {
-    getRates();
-  },[])
-
+    
+    props.dynamicRate(getRates());
+  }, []);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.removeButton}
-        onPress={() => console.log('hello')}
-      >
+      <TouchableOpacity style={styles.removeButton} onPress={()=>removeStar()}>
         <Ionicons name="ios-remove" size={30} color="red" />
       </TouchableOpacity>
       <View style={styles.starContainer}>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={'ios-star'} size={30} color="gold" />
+        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>initialTurnOnStars(2,'SET')}>
+          <Ionicons name={star1} size={30} color="gold" />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
+        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>initialTurnOnStars(4,'SET')}>
+          <Ionicons name={star2} size={30} color="gold" />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
+        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>initialTurnOnStars(6,'SET')}>
+          <Ionicons name={star3} size={30} color="gold" />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
+        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>initialTurnOnStars(8,'SET')}>
+          <Ionicons name={star4} size={30} color="gold" />
         </TouchableOpacity>
-
-        <TouchableOpacity style={{ marginLeft: 2 }}>
-          <Ionicons name={name} size={30} color="gold" />
+        <TouchableOpacity style={{ marginLeft: 2 }} onPress={()=>initialTurnOnStars(10,'SET')}>
+          <Ionicons name={star5} size={30} color="gold" />
         </TouchableOpacity>
       </View>
     </View>
@@ -63,9 +141,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
-    height:'100%',
-    width:'100%',
-   
+    height: '100%',
+    width: '100%'
   },
   removeButton: {
     backgroundColor: 'hsl(290, 20%, 20%)',
@@ -79,8 +156,8 @@ const styles = StyleSheet.create({
   },
   starContainer: {
     flexDirection: 'row',
-    marginTop:6,
-    marginLeft:16
+    marginTop: 6,
+    marginLeft: 16
   }
 });
 

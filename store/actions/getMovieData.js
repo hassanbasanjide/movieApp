@@ -36,7 +36,7 @@ export default (category) => {
         CategoryType: category,
       });
     } catch (error) {
-      console.log(error);
+     
       throw error;
     }
   };

@@ -69,7 +69,7 @@ export const primefunc2 = async reqToken => {
       );
 
 
-      console.log(resData)
+  
     }
     
     return resData.success;

@@ -23,6 +23,9 @@ const DetailComponents = props => {
   const toggleVisible = () => {
     setvisibaleRateContainer(prevState => !prevState);
   };
+  const dynamicRate=(func)=>{
+    props.navigation.addListener('focus', () => func)
+  }
 
   return (
     <View style={{ backgroundColor: 'hsl(290, 20%, 20%)', height: '100%' }}>
@@ -54,7 +57,7 @@ const DetailComponents = props => {
               visible={visibaleRateContainer}
               style={styles.rateScreen}
             >
-              <RateSection id={id}/>
+              <RateSection id={id} dynamicRate={dynamicRate}/>
             </FadeInOut>
           </View>
 

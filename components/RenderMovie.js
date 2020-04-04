@@ -42,7 +42,7 @@ const RenderMovie = (props) => {
             style={{
               flexDirection: "column",
               marginVertical: 8,
-              marginLeft: 170,
+              marginLeft: Dimensions.get('screen').width*0.5,
             }}
           >
             <Text
