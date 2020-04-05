@@ -45,6 +45,7 @@ const renderCategory = (props) => {
         renderItem={(itemData) => {
           return (
             <RenderMovie
+              type={tvOrMovie}
               title={
                 props.tvOrMovie === "movie"
                   ? itemData.item.title
@@ -67,7 +68,8 @@ const renderCategory = (props) => {
                 itemData.item.poster_path,
                 itemData.item.overview,
                 itemData.item.vote_average,
-                itemData.item.id
+                itemData.item.id,
+                tvOrMovie
               )}
             />
           );

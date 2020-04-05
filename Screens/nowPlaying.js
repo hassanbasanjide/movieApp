@@ -1,41 +1,47 @@
 /* eslint-disable linebreak-style */
-import * as SecureStore from 'expo-secure-store';
-import React, { useEffect } from 'react';
-import { BackHandler, Alert } from 'react-native';
-import RenderCategory from '../components/RenderCategory';
+import React, { useEffect } from "react";
+import { BackHandler, Alert } from "react-native";
+import RenderCategory from "../components/RenderCategory";
 
-const MovieNowPlayingScreen = props => {
-  const navigateToDetail = (title, imageUrl, description, voteAverage,id) => {
-    props.navigation.navigate('DetailComponents', {
+const MovieNowPlayingScreen = (props) => {
+  const navigateToDetail = (
+    title,
+    imageUrl,
+    description,
+    voteAverage,
+    id,
+    type
+  ) => {
+    props.navigation.navigate("DetailComponents", {
       title,
       imageUrl,
       description,
       vote_average: voteAverage,
-      id
+      id,
+      type,
     });
   };
   const backAction = () => {
-    Alert.alert('Hold on!', 'Are you sure you want to exit App?', [
+    Alert.alert("Hold on!", "Are you sure you want to exit App?", [
       {
-        text: 'Cancel',
+        text: "Cancel",
         onPress: () => null,
-        style: 'cancel'
+        style: "cancel",
       },
-      { text: 'YES', onPress: () => BackHandler.exitApp() }
+      { text: "YES", onPress: () => BackHandler.exitApp() },
     ]);
     return true;
   };
 
   useEffect(() => {
-    props.navigation.addListener('focus', () => {
-    BackHandler.addEventListener('hardwareBackPress', backAction);
+    props.navigation.addListener("focus", () => {
+      BackHandler.addEventListener("hardwareBackPress", backAction);
     });
-    props.navigation.addListener('blur', () => {
-      BackHandler.removeEventListener('hardwareBackPress', backAction);
+    props.navigation.addListener("blur", () => {
+      BackHandler.removeEventListener("hardwareBackPress", backAction);
     });
   }, []);
 
-  
   return (
     <RenderCategory
       category="now_playing"

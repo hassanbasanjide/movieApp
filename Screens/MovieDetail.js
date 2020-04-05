@@ -1,45 +1,45 @@
-import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import {
   Dimensions,
   ImageBackground,
   StyleSheet,
   Text,
-  View
-} from 'react-native';
-import FadeInOut from 'react-native-fade-in-out';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import Star from '../components/Star';
-import RateSection from '../components/RateSection';
+  View,
+} from "react-native";
+import FadeInOut from "react-native-fade-in-out";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Star from "../components/Star";
+import RateSection from "../components/RateSection";
 
-const DetailComponents = props => {
+const DetailComponents = (props) => {
   const { route } = props;
-  const { title, imageUrl, description, id } = route.params;
+  const { title, imageUrl, description, id, type } = route.params;
   const rate = route.params.vote_average;
   const [line, setLine] = useState(4);
-  const [name, setname] = useState('more');
+  const [name, setname] = useState("more");
   const [visibaleRateContainer, setvisibaleRateContainer] = useState(false);
 
   const toggleVisible = () => {
-    setvisibaleRateContainer(prevState => !prevState);
+    setvisibaleRateContainer((prevState) => !prevState);
   };
-  const dynamicRate=(func)=>{
-    props.navigation.addListener('focus', () => func)
-  }
+  const dynamicRate = (func) => {
+    props.navigation.addListener("focus", () => func);
+  };
 
   return (
-    <View style={{ backgroundColor: 'hsl(290, 20%, 20%)', height: '100%' }}>
+    <View style={{ backgroundColor: "hsl(290, 20%, 20%)", height: "100%" }}>
       <ImageBackground
         source={{ uri: `https://image.tmdb.org/t/p/w500/${imageUrl}` }}
         style={styles.imageBackground}
       >
         <View style={styles.container}>
           <View style={styles.title}>
-            <Text style={{ color: 'white', fontSize: 22 }}>{title}</Text>
+            <Text style={{ color: "white", fontSize: 22 }}>{title}</Text>
           </View>
 
           <View style={styles.rate}>
-            <Text style={{ color: 'gold', fontSize: 29, marginRight: 10 }}>
+            <Text style={{ color: "gold", fontSize: 29, marginRight: 10 }}>
               {rate}
             </Text>
 
@@ -47,6 +47,7 @@ const DetailComponents = props => {
 
             <TouchableOpacity
               style={styles.rateButton}
+              // eslint-disable-next-line react/jsx-no-bind
               onPress={toggleVisible.bind(this)}
             >
               <Ionicons name="ios-star" size={20} color="gold" />
@@ -57,30 +58,30 @@ const DetailComponents = props => {
               visible={visibaleRateContainer}
               style={styles.rateScreen}
             >
-              <RateSection id={id} dynamicRate={dynamicRate}/>
+              <RateSection id={id} dynamicRate={dynamicRate} type={type} />
             </FadeInOut>
           </View>
 
           <View style={styles.description}>
             <Text
               numberOfLines={line}
-              style={{ color: 'rgba(255,255,255,0.6)', fontSize: 17 }}
+              style={{ color: "rgba(255,255,255,0.6)", fontSize: 17 }}
             >
               {description}
             </Text>
             <TouchableOpacity
               onPress={() => {
-                if (name === 'more') {
+                if (name === "more") {
                   setLine(15);
-                  setname('close');
+                  setname("close");
                 } else {
                   setLine(4);
-                  setname('more');
+                  setname("more");
                 }
               }}
               style={styles.more}
             >
-              <Text style={{ color: 'gold' }}>{name}</Text>
+              <Text style={{ color: "gold" }}>{name}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -91,69 +92,69 @@ const DetailComponents = props => {
 
 const styles = StyleSheet.create({
   imageBackground: {
-    height: Dimensions.get('screen').height * 0.55,
-    width: Dimensions.get('screen').width,
-    alignItems: 'center',
-    marginTop: 25
+    height: Dimensions.get("screen").height * 0.55,
+    width: Dimensions.get("screen").width,
+    alignItems: "center",
+    marginTop: 25,
   },
 
   container: {
     //  height:Dimensions.get('screen').height*0.34,
 
-    width: Dimensions.get('screen').width * 0.95,
-    backgroundColor: 'rgb(100,0,100)',
+    width: Dimensions.get("screen").width * 0.95,
+    backgroundColor: "rgb(100,0,100)",
     marginTop: 250,
     borderRadius: 10,
-    alignItems: 'center',
-    padding: 5
+    alignItems: "center",
+    padding: 5,
   },
 
   title: {
-    height: Dimensions.get('screen').height * 0.05,
-    width: '98%'
+    height: Dimensions.get("screen").height * 0.05,
+    width: "98%",
   },
 
   rate: {
-    height: Dimensions.get('screen').height * 0.08,
-    width: '98%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 1
+    height: Dimensions.get("screen").height * 0.08,
+    width: "98%",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
   },
 
   description: {
     marginTop: 15,
     marginRight: 5,
-    marginBottom: 20
+    marginBottom: 20,
   },
 
   star: {
     borderWidth: 1,
-    justifyContent: 'center',
-    marginLeft: 3
+    justifyContent: "center",
+    marginLeft: 3,
   },
   more: {
-    alignItems: 'center',
+    alignItems: "center",
     height: 20,
-    width: 40
+    width: 40,
   },
   rateButton: {
-    backgroundColor: 'hsl(290, 20%, 20%)',
-    height: Dimensions.get('screen').height * 0.05,
-    width: Dimensions.get('screen').height * 0.05,
-    borderRadius: Dimensions.get('screen').height * 0.05,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 20
+    backgroundColor: "hsl(290, 20%, 20%)",
+    height: Dimensions.get("screen").height * 0.05,
+    width: Dimensions.get("screen").height * 0.05,
+    borderRadius: Dimensions.get("screen").height * 0.05,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 20,
   },
 
   rateScreen: {
     width: 100 * 2.5,
     height: 50,
     borderRadius: 5,
-    backgroundColor: 'hsl(290, 20%, 20%)',
-    backfaceVisibility: 'hidden'
-  }
+    backgroundColor: "hsl(290, 20%, 20%)",
+    backfaceVisibility: "hidden",
+  },
 });
 
 export default DetailComponents;
